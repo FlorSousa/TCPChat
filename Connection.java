@@ -19,6 +19,7 @@ public class Connection {
     }
 
     public void startConnection() throws IOException{
+        System.out.println("Fazendo conexão");
         socket = new Socket(this.serverIp, this.serverPort);
         input = new DataInputStream(socket.getInputStream());
         output = new DataOutputStream(socket.getOutputStream());
