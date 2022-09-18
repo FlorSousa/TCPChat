@@ -25,6 +25,8 @@ public class ServerConnection extends Thread{
             System.out.println("Não foi possivel enviar a mensagem");
         }
     }
+
+    @Override
     public void run(){
         try {
             String mensagem = in.readUTF();
