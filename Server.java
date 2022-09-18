@@ -21,7 +21,6 @@ public class Server {
             socket = serverSocket.accept();
             ServerConnection serverConnection = new ServerConnection(socket);
             threadPool.submit(serverConnection);
-            
         }
         serverSocket.close();
     }

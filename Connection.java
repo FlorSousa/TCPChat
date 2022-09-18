@@ -1,10 +1,7 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
 
 public class Connection {
     String serverIp;

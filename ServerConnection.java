@@ -28,7 +28,6 @@ public class ServerConnection extends Thread{
     public void run(){
         try {
             String mensagem = in.readUTF();
-            System.out.println(mensagem);
             sendResponse(mensagem);
         } catch(Exception e){
             System.out.println("Ocorreu um erro");
