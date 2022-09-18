@@ -3,6 +3,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -11,29 +13,17 @@ public class Server {
     private DataOutputStream output;
 
     public void start(int port) throws IOException {
-        // Cria server socket para aguardar conexoes de clientes em loop
+        ExecutorService threadPool = Executors.newFixedThreadPool(2);
         System.out.println("[S1] Criando server socket para aguardar conexões de clientes em loop");
         serverSocket = new ServerSocket(port);
-        while (serverSocket.isBound()) {
-            
-            // Aguarda conexao de novo cliente (bloqueante)
+        while (serverSocket.isBound()) {   
             System.out.println("[S2] Aguardando conexão em: " + serverSocket.getLocalSocketAddress());
             socket = serverSocket.accept();
+            ServerConnection serverConnection = new ServerConnection(socket);
+            threadPool.submit(serverConnection);
             
-            // Conexao estabelecida, obtem canais de entrada e saida de dados com cliente
-            System.out.println("[S3] Conexão estalecida com cliente:" + socket.getRemoteSocketAddress());
-            input = new DataInputStream(socket.getInputStream());
-            output = new DataOutputStream(socket.getOutputStream());
-            
-            // Recebe mensagem do cliente do canal de entrada
-            String msg = input.readUTF();
-            System.out.println("[S4] Mensagem recebida de " + socket.getRemoteSocketAddress() + ": " + msg);
-            
-            // Envia resposta ao cliente no canal de saida
-            String reply = msg.toUpperCase();
-            output.writeUTF(reply);
-            System.out.println("[S5] Mensagem enviada para " + socket.getRemoteSocketAddress() + ": " + reply);
         }
+        serverSocket.close();
     }
 
     public void stop() throws IOException {

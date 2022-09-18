@@ -22,7 +22,6 @@ public class Client {
             System.out.println("Insira uma mensagem");
             String msg = scanner.nextLine();
             sendMessage(msg);
-            System.out.println("Encerrando conexão");
             conexao.closeConnection();
         }
     }
