@@ -35,8 +35,6 @@ public class Client {
     }
 
     public static void sendMessage(String msg) throws IOException{
-        output.writeUTF(msg);
-        //String response = input.readUTF();
-        //System.out.println("[C5] Resposta recebida: " + response);       
+        output.writeUTF(msg);    
     }   
 }

@@ -11,7 +11,6 @@ public class Listener extends Thread {
     public void run(){
         String serverResponse;
         try {
-            System.out.println("Ouvindo");
             serverResponse = input.readUTF();
             System.out.println("Conexão:"+serverResponse);
         } catch (IOException e) {  
