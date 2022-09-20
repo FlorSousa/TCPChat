@@ -12,9 +12,8 @@ public class Listener extends Thread {
         String serverResponse;
         try {
             serverResponse = input.readUTF();
-            if(!serverResponse.equals("self-connection")){
-                System.out.println("Mensagem do outro cliente:"+serverResponse);
-            }
+            
+            System.out.println("Mensagem do outro cliente:"+serverResponse);
             System.out.println("Insira uma mensagem: ");
         } catch (IOException e) {  
             e.printStackTrace();

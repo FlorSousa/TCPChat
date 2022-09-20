@@ -10,7 +10,7 @@ public class HandleConnection {
     public static void sendToAll(String message, ServerConnection from){
         for(ServerConnection connection: connections){
             if(connection.isOpen()){
-                message = (connection == from) ? "self-connection" : message;
+                //message = (connection == from) ? "self-connection" : message;
                 connection.sendResponse(message);
             }
         }
