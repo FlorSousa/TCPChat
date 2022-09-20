@@ -15,10 +15,16 @@ public class Connection {
         this.serverPort = serverPort;
     }
 
-    public void startConnection() throws IOException{
-        socket = new Socket(this.serverIp, this.serverPort);
-        input = new DataInputStream(socket.getInputStream());
-        output = new DataOutputStream(socket.getOutputStream());
+    public Boolean startConnection() throws IOException{
+        try{
+            socket = new Socket(this.serverIp, this.serverPort);
+            input = new DataInputStream(socket.getInputStream());
+            output = new DataOutputStream(socket.getOutputStream());
+            return true;
+        }catch(Exception io){
+            return false;
+        }
+        
         
     }
 
