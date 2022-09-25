@@ -28,13 +28,10 @@ public class Client {
                 socket = conexao.getSocket();
                 input = conexao.getInput();
                 output = conexao.getOutObject();
-                Listener listener = new Listener(input);
-                Future<?> activeThread = threadPool.submit(listener);
+                Listener listener = new Listener(input, conexao);
                 String msg = scanner.nextLine();
                 sendMessage(msg);
-                if(activeThread.isDone()){
-                    conexao.closeConnection();
-                }
+                Future<?> activeThread = threadPool.submit(listener);
                 continue;
             }
             System.out.println("Erro ao iniciar, sem conexão com o servidor");
